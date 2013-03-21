@@ -612,7 +612,7 @@ static const NSInteger kActivityLabelTag          = 96;
   [super showBars:show animated:animated];
 
   CGFloat alpha = show ? 1 : 0;
-  if (alpha == _toolbar.alpha)
+  if (_toolbar && alpha == _toolbar.alpha)
     return;
 
   if (animated) {
@@ -877,7 +877,7 @@ static const NSInteger kActivityLabelTag          = 96;
     photoView = [self createPhotoView];
     photoView.captionStyle = _captionStyle;
     photoView.defaultImage = _defaultImage;
-    photoView.hidesCaption = _toolbar.alpha == 0;
+    photoView.hidesCaption = self.navigationController.navigationBar.hidden;
   }
 
   id<TTPhoto> photo = [_photoSource photoAtIndex:pageIndex];
